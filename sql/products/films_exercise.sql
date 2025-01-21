@@ -76,6 +76,19 @@ directorId INT,
 FOREIGN KEY (directorId) REFERENCES directors2(id)
 );
 
+CREATE TABLE directors2 (
+    id SERIAL PRIMARY KEY,         
+    name VARCHAR(50)     
+);
+
+INSERT INTO directors2 (name)
+VALUES 
+    ('Steven Spielberg'), 
+    ('Martin Scorsese'), 
+    ('Christopher Nolan'), 
+    ('Alfred Hitchcock'), 
+    ('Woody Allen'), 
+    ('Kristoffer Blücher');
 
 
 INSERT INTO films2 (title, genre, release_year, score, directorId)
@@ -95,21 +108,6 @@ VALUES
 
 
 
-CREATE TABLE directors2 (
-    id SERIAL PRIMARY KEY,         
-    name VARCHAR(50)     
-);
-
-
-INSERT INTO directors2 (name)
-VALUES 
-    ('Steven Spielberg'), 
-    ('Martin Scorsese'), 
-    ('Christopher Nolan'), 
-    ('Alfred Hitchcock'), 
-    ('Woody Allen'), 
-    ('Kristoffer Blücher');
-
 
 SELECT films2.title AS film_title, 
        films2.genre,
@@ -118,6 +116,7 @@ SELECT films2.title AS film_title,
        directors2.name AS director_name
 FROM films2
 JOIN directors2 ON films2.directorId = directors2.id;
+
 
 SELECT directors2.name, COUNT(films2.id) AS number_of_films
 FROM directors2
